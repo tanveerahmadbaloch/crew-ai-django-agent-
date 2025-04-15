@@ -1,0 +1,56 @@
+{% extends 'crewai_app/base.html' %}
+
+{% block title %}CrewAI Content Generator - Home{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-lg">
+            <div class="card-body text-center">
+                <h1 class="card-title mb-4">Welcome to CrewAI Content Generator</h1>
+                <p class="lead">
+                    Generate compelling stories, articles, and content using AI agents that work together.
+                </p>
+                <div class="mt-5">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'create_content' %}" class="btn btn-primary btn-lg">Create New Content</a>
+                        <a href="{% url 'content_list' %}" class="btn btn-outline-primary btn-lg ms-3">View My Content</a>
+                    {% else %}
+                        <a href="{% url 'signup' %}" class="btn btn-primary btn-lg">Sign Up</a>
+                        <a href="{% url 'login' %}" class="btn btn-outline-primary btn-lg ms-3">Login</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mt-5">
+            <div class="card-body">
+                <h2 class="card-title">How It Works</h2>
+                <div class="row mt-4">
+                    <div class="col-md-4 text-center">
+                        <div class="feature-icon bg-primary bg-gradient text-white rounded-circle mb-3">
+                            <i class="bi bi-lightbulb"></i>
+                        </div>
+                        <h5>1. Enter Your Idea</h5>
+                        <p>Provide a brief description or concept for your content.</p>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="feature-icon bg-primary bg-gradient text-white rounded-circle mb-3">
+                            <i class="bi bi-gear"></i>
+                        </div>
+                        <h5>2. AI Agents Work Together</h5>
+                        <p>Our team of AI agents analyze, write, and edit your content.</p>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="feature-icon bg-primary bg-gradient text-white rounded-circle mb-3">
+                            <i class="bi bi-file-text"></i>
+                        </div>
+                        <h5>3. Get Your Content</h5>
+                        <p>Receive professionally written and edited content.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

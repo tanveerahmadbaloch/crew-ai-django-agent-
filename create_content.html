@@ -1,0 +1,42 @@
+{% extends 'crewai_app/base.html' %}
+
+{% block title %}Create New Content{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h2 class="mb-0">Create New Content</h2>
+            </div>
+            <div class="card-body">
+                <form method="post" action="{% url 'create_content' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="idea" class="form-label">Your Idea or Concept</label>
+                        <textarea class="form-control" id="idea" name="idea" rows="5" required 
+                                  placeholder="Enter your idea, concept, or topic for the content..."></textarea>
+                        <div class="form-text">
+                            Be as specific as possible. The more details you provide, the better the result.
+                        </div>
+                    </div>
+                    <div class="alert alert-info">
+                        <h5 class="alert-heading">How it works:</h5>
+                        <p>Your idea will be processed by three AI agents powered by OpenAI GPT-3.5 Turbo:</p>
+                        <ol>
+                            <li><strong>Idea Analyst:</strong> Analyzes your idea and creates a blueprint</li>
+                            <li><strong>Fiction Writer:</strong> Creates compelling content based on the blueprint</li>
+                            <li><strong>Content Editor:</strong> Edits and polishes the final content</li>
+                        </ol>
+                        <p class="mb-0">This process may take a few minutes to complete.</p>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg">Generate Content</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

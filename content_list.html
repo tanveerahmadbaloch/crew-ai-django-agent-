@@ -1,0 +1,54 @@
+{% extends 'crewai_app/base.html' %}
+
+{% block title %}My Content{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card shadow">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h2 class="mb-0">My Content</h2>
+                <a href="{% url 'create_content' %}" class="btn btn-primary">Create New Content</a>
+            </div>
+            <div class="card-body">
+                {% if contents %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Created</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for content in contents %}
+                                <tr>
+                                    <td>{{ content.title }}</td>
+                                    <td>{{ content.created_at|date:"M d, Y H:i" }}</td>
+                                    <td>
+                                        <span class="badge {% if content.status == 'completed' %}bg-success{% elif content.status == 'processing' %}bg-warning{% elif content.status == 'failed' %}bg-danger{% else %}bg-secondary{% endif %}">
+                                            {{ content.status|title }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'content_detail' content.id %}" class="btn btn-sm btn-outline-primary">View</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="alert alert-info">
+                        <p>You haven't created any content yet.</p>
+                        <a href="{% url 'create_content' %}" class="btn btn-primary">Create Your First Content</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
